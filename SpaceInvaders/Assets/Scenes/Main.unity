@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd58a7a8d4d9b24b961969cfdacba07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovementSpeed: 6
+  _projectilePrefab: {fileID: 5960228553168424443, guid: 9113fd9edd0c3434d8b8b164546fd142,
+    type: 3}
+  _movementSpeed: 6
 --- !u!65 &585472158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 585472156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.23, y: -3.17, z: -3.3057873}
-  m_LocalScale: {x: 1.3222075, y: 0.24818194, z: 1}
+  m_LocalScale: {x: 1.3222075, y: 0.24818194, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
