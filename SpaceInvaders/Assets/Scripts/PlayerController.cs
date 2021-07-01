@@ -6,12 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField, Tooltip("This value is measured in Unity meters per frame.")] private float _movementSpeed;
+    [SerializeField, Tooltip("This value is measured in scaled seconds as is assigned once on Awake.")] private float _baseCoolDown;
 
     private Weapon _weapon;
 
     private void Awake()
     {
-        _weapon = new Weapon(_projectilePrefab, 4f, 2.5f);
+        _weapon = new Weapon(_projectilePrefab, 4f, _baseCoolDown);
     }
 
     private void Update()
