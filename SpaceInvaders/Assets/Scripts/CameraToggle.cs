@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraToggle : MonoBehaviour
 {
     public GameObject player;
-    private Vector3 offset = new Vector3(0, -1, -2);
+    private Vector3 offset = new Vector3(0, -1, -1);
 
     // Start is called before the first frame update
     void Start()
