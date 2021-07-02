@@ -7,7 +7,7 @@ namespace Custom
     public class ProjectileTokenPool
     {
         private static ProjectileTokenPool s_instance;
-        private const int MAX_PROJECTILE_COUNT = 5;
+        private const int MAX_PROJECTILE_COUNT = 15;
         private const string DEFAULT_KEY = "Default";
 
         private Dictionary<string, GameObject[]> _activeProjectiles;

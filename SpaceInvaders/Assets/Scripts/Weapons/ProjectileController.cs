@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    private float _remainingLifeTime = 200f; // Measured in scaled seconds;
+    private float _remainingLifeTime = 3f; // Measured in scaled seconds;
     private float _projectileSpeed;
     private int _projectileDamage;
 

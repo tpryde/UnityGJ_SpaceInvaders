@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    private float PADDING_SIZE = 0.8f;
+    private float PADDING_SIZE_WIDTH = 0.8f;
+    private float PADDING_SIZE_HEIGHT = 0.8f;
 
     private const int WAVE_WIDTH = 9;
     private const int WAVE_HEIGHT = 5;
@@ -87,7 +88,9 @@ public class WaveSpawner : MonoBehaviour
                     Transform enemyInstance = Instantiate(data.Prefab, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f)).transform;
                     enemyInstance.SetParent(_spawnRoot);
                     enemyInstance.localScale = Vector3.one;
-                    enemyInstance.localPosition = _currentOffset * PADDING_SIZE;
+                    enemyInstance.localPosition = new Vector3(_currentOffset.x * PADDING_SIZE_WIDTH,
+                                                              _currentOffset.y * PADDING_SIZE_HEIGHT,
+                                                              0f);
 
                     r += data.WidthPadding - 1;
                 }
@@ -101,7 +104,9 @@ public class WaveSpawner : MonoBehaviour
             else { _currentOffset.x += 1f; }
         }
         _currentOffset.y = 0f;
-        _currentOffset *= PADDING_SIZE * 0.5f;
+        _currentOffset = new Vector3(_currentOffset.x * PADDING_SIZE_WIDTH * 0.5f,
+                                     _currentOffset.y * PADDING_SIZE_HEIGHT,
+                                     0f);
     }
 
     private bool IsValidSpace(int row, int column)
