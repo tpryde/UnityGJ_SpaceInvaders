@@ -13,8 +13,10 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     private Custom.ProjectileTokenPool _projectilePool;
     private float _secondsUntilNextShotAttempt;
+    private AudioSource enemyAudio;
+    public AudioClip explosionSound;
+    public AudioClip projectileSound;
 
-    
     #region Unity
 
     private void Awake()
@@ -22,8 +24,11 @@ public class EnemyController : MonoBehaviour, IDamagable
         _projectilePool = Custom.ProjectileTokenPool.RequestReference();
         _secondsUntilNextShotAttempt = _coolDownRange.GetRandom();
     }
-
-    private void Update()
+    private void Start()
+    {
+        enemyAudio = GetComponent<AudioSource>();
+    }
+private void Update()
     {
         _secondsUntilNextShotAttempt -= Custom.GameData.GameTimeDelta;
         if(_secondsUntilNextShotAttempt <= 0)
@@ -38,9 +43,10 @@ public class EnemyController : MonoBehaviour, IDamagable
     public bool DealDamage(int dmg)
     {
         _health -= dmg;
-        if(_health <= 0)
+        if (_health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 1f);
+            enemyAudio.PlayOneShot(explosionSound);
             return true;
         }
         return false;
@@ -50,5 +56,6 @@ public class EnemyController : MonoBehaviour, IDamagable
     {
         ProjectileController controller = _projectilePool.RequestProjectile(_projectilePrefab, _projectileSpawnPoint.position, Quaternion.Euler(0f, 0f, 180f), ENEMY_PROJECTILE_KEY);
         controller?.Initialize(6f, 1);
+        enemyAudio.PlayOneShot(projectileSound);
     }
 }
