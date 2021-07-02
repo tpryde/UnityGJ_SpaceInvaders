@@ -10,17 +10,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("This value is measured in scaled seconds as is assigned once on Awake.")] private float _baseCoolDown;
 
     private Weapon _weapon;
+    private AudioSource playerAudio;
+    public AudioClip projectileSound;
 
     private void Awake()
     {
         _weapon = new Weapon(_projectilePrefab, 4f, _baseCoolDown, 1);
+        
     }
 
+    private void Start()
+    {
+        playerAudio = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         if(Custom.Input.GetAction())
         {
             _weapon.Fire(_barrelPoint.position, Quaternion.identity);
+            playerAudio.PlayOneShot(projectileSound, 0.7f);
         }
 
         _weapon.UpdateWeapon(Custom.GameData.GameTimeDelta);
