@@ -20,9 +20,10 @@ public class Weapon
     private int ProjectileDamage => Base_Projectile_Damage;
 
     private Weapon() { }
-    public Weapon(GameObject prefab, float speed, float cooldown)
+    public Weapon(GameObject prefab, float speed, float cooldown, int damage)
     {
         Base_Projectile_Speed = speed;
+        Base_Projectile_Damage = damage;
         Base_Cool_Down = cooldown;
 
         _projectilePrefab = prefab;

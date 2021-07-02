@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _weapon = new Weapon(_projectilePrefab, 4f, _baseCoolDown);
+        _weapon = new Weapon(_projectilePrefab, 4f, _baseCoolDown, 1);
     }
 
     private void Update()

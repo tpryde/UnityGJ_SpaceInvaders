@@ -23,9 +23,12 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter(Collider col)
     {
-        // TODO: Deal damage to target
+        if(col.gameObject.TryGetComponent(out IDamagable damagable))
+        {
+            damagable.DealDamage(_projectileDamage);
+        }
         Destroy(gameObject);
     }
 

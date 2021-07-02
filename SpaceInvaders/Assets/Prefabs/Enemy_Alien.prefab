@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 3054707560868267374}
   - component: {fileID: 972908492263272868}
   - component: {fileID: 68014016822457248}
-  m_Layer: 0
+  - component: {fileID: 4197115076249794039}
+  - component: {fileID: 6533440631661607912}
+  m_Layer: 11
   m_Name: Enemy_Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +101,36 @@ MonoBehaviour:
   _coolDownRange:
     _min: 1
     _max: 10
+  _health: 1
+--- !u!65 &4197115076249794039
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621449171741413489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.48713076, y: 0.08032031, z: 0.5891294}
+  m_Center: {x: 0, y: 0.000000003725291, z: 0}
+--- !u!54 &6533440631661607912
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621449171741413489}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3335935289063051228
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4059167568526595137}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spawn_Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

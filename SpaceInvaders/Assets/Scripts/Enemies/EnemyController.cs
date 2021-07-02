@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamagable
 {
     private const string ENEMY_PROJECTILE_KEY = "BASIC_ENEMY";
 
     [SerializeField] private ProjectileController _projectilePrefab;
     [SerializeField] private Transform _projectileSpawnPoint;
     [SerializeField] private Custom.Rangef _coolDownRange;
+    [SerializeField, Space(5)] private int _health;
 
     private Custom.ProjectileTokenPool _projectilePool;
     private float _secondsUntilNextShotAttempt;
+
+    
+    #region Unity
 
     private void Awake()
     {
@@ -26,6 +30,17 @@ public class EnemyController : MonoBehaviour
         {
             AttemptShot();
             _secondsUntilNextShotAttempt = _coolDownRange.GetRandom();
+        }
+    }
+
+    #endregion
+
+    public void DealDamage(int dmg)
+    {
+        _health -= dmg;
+        if(_health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
