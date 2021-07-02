@@ -35,13 +35,15 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     #endregion
 
-    public void DealDamage(int dmg)
+    public bool DealDamage(int dmg)
     {
         _health -= dmg;
         if(_health <= 0)
         {
             Destroy(gameObject);
+            return true;
         }
+        return false;
     }
 
     private void AttemptShot()
