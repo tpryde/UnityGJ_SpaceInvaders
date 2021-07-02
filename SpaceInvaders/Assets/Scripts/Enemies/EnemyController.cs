@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour, IDamagable
     private float _secondsUntilNextShotAttempt;
     private AudioSource enemyAudio;
     public AudioClip explosionSound;
+    public AudioClip projectileSound;
 
     #region Unity
 
@@ -54,5 +55,6 @@ private void Update()
     {
         ProjectileController controller = _projectilePool.RequestProjectile(_projectilePrefab, _projectileSpawnPoint.position, Quaternion.Euler(0f, 0f, 180f), ENEMY_PROJECTILE_KEY);
         controller?.Initialize(6f, 1);
+        enemyAudio.PlayOneShot(projectileSound);
     }
 }

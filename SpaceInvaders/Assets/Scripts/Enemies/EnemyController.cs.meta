@@ -7,6 +7,7 @@ MonoImporter:
   - _projectilePrefab: {instanceID: 0}
   - _projectileSpawnPoint: {instanceID: 0}
   - explosionSound: {fileID: 8300000, guid: e53ff977dabd94b40b24b2d624c9ff61, type: 3}
+  - projectileSound: {fileID: 8300000, guid: e5c48c6ea2d1943179774266b80c2501, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
