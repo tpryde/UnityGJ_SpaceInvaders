@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    private System.Action<IDamagable, bool> _onCollision;
+    
     private float _remainingLifeTime = 3f; // Measured in scaled seconds;
     private float _projectileSpeed;
     private int _projectileDamage;
@@ -27,7 +29,8 @@ public class ProjectileController : MonoBehaviour
     {
         if(col.gameObject.TryGetComponent(out IDamagable damagable))
         {
-            damagable.DealDamage(_projectileDamage);
+            bool wasDestroyed = damagable.DealDamage(_projectileDamage);
+            _onCollision?.Invoke(damagable, wasDestroyed);
         }
         Destroy(gameObject);
     }
@@ -43,5 +46,10 @@ public class ProjectileController : MonoBehaviour
     {
         _projectileSpeed = speed;
         _projectileDamage = damage;
+    }
+
+    public void ListenForCollision(System.Action<IDamagable, bool> callback)
+    {
+        _onCollision = callback;
     }
 }
