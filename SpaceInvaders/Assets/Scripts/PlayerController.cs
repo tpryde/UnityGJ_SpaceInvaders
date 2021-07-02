@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private Transform _barrelPoint;
     [SerializeField, Tooltip("This value is measured in Unity meters per frame.")] private float _movementSpeed;
     [SerializeField, Tooltip("This value is measured in scaled seconds as is assigned once on Awake.")] private float _baseCoolDown;
 
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Custom.Input.GetAction())
         {
-            _weapon.Fire(transform.position, Quaternion.identity);
+            _weapon.Fire(_barrelPoint.position, Quaternion.identity);
         }
 
         _weapon.UpdateWeapon(Custom.GameData.GameTimeDelta);

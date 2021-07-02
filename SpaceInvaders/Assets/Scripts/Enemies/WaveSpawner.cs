@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
     private float PADDING_SIZE = 0.8f;
 
-    private const int WAVE_WIDTH = 5;
+    private const int WAVE_WIDTH = 9;
     private const int WAVE_HEIGHT = 5;
 
     [SerializeField] private Transform _spawnRoot;
@@ -43,7 +43,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _spawnRoot.position = 8f * TrapezoidalWave(_timePassed, 1f, 8f, -3f, 0f) * Vector3.right + _initialPosition - _currentOffset;
+        _spawnRoot.position = 8f * TrapezoidalWave(_timePassed, 1f, 5f, -1f, 0f) * Vector3.right + _initialPosition - _currentOffset;
     }
 
     #endregion
@@ -71,12 +71,13 @@ public class WaveSpawner : MonoBehaviour
             Destroy(_spawnRoot.GetChild(i));
         }
 
-        // TODO: set _currentEnemyWave to equal the current wave
+        // TODO: Set _currentEnemyWave to equal the current wave
 
         // Spawn new enemy wave
         for (int r = 0; r < WAVE_WIDTH; ++r)
         {
-            _currentOffset.x = 0f;
+            _currentOffset.y = 0f;
+
             for (int c = 0; c < WAVE_HEIGHT; ++c)
             {
                 if (!IsValidSpace(r, c)) continue;
@@ -90,9 +91,14 @@ public class WaveSpawner : MonoBehaviour
 
                     r += data.WidthPadding - 1;
                 }
-                _currentOffset.x += data.WidthPadding;
+                _currentOffset.y -= data.HeightPadding;
             }
-            _currentOffset.y -= 1f;
+
+            if (TryGetEnemyData(_currentEnemyWave[r, 0], out EnemyData first))
+            {
+                _currentOffset.x += first.WidthPadding;
+            }
+            else { _currentOffset.x += 1f; }
         }
         _currentOffset.y = 0f;
         _currentOffset *= PADDING_SIZE * 0.5f;
